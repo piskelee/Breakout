@@ -1,0 +1,8 @@
+TITLE = "Breakout"
+WIN_WIDTH = 1280
+WIN_HEIGHT = 720
+
+
+BLOCK_MAP=[
+    "666666666"
+]
