@@ -11,9 +11,19 @@ class Game:
 
         # groups
         self.all_sprites = pygame.sprite.Group()
+        self.block_sprites = pygame.sprite.Group()
 
         self.player = Player(self.all_sprites)
-        self.ball = Ball(self.all_sprites, self.player)
+        self.stage_setup()
+        self.ball = Ball(self.all_sprites, self.player, self.block_sprites)
+
+    def stage_setup(self):
+        for index_row, row in enumerate(BLOCK_MAP):
+            for index_col, col in enumerate(row):
+                if col != " ":
+                    x = index_col * (BLOCK_WIDTH + GAP_SIZE) + GAP_SIZE // 2
+                    y = index_row * (BLOCK_HEIGHT + GAP_SIZE) + GAP_SIZE // 2
+                    Block(col, (x, y), [self.all_sprites, self.block_sprites])
 
     def run(self):
         last_time = time.time()
